@@ -1,0 +1,35 @@
+
+<html>
+<head>
+</head>
+<body>
+<?php
+   $NAM = $_POST['NOMBRE'];
+   $COR = $_POST['CORREO'];
+   $TEL = $_POST['TELEFONO'];
+   $COM = $_POST['COMENTARIO'];
+
+   $con = mysql_connect("localhost","root","");
+   if (!$con){die('ERROR DE CONEXION CON MYSQL: ' . mysql_error());}
+
+
+   $database = mysql_select_db("AMJO",$con);
+   if (!$database){die('ERROR CONEXION CON BD:'.Mysql_error());}
+
+
+
+$sql = ("INSERT INTO COMENTARIOS (NOMBRE, CORREO, TELEFONO, MENSAJE) VALUES('$NAM','$COR',$TEL,'$COM'); ") ;
+               $result = mysql_query($sql);
+                if (! $result){
+                               echo"La consulta SQL contiene errore.".Mysql_error();
+                               exit();
+                }else {
+                  echo "REGISTRO EXITOSO";
+                }
+?>
+<BR>
+<form name="consulta1" method="post" action="consulta_empleados2.php">
+<input type="submit" value="REGRESAR">
+</form>
+</body>
+</html>
